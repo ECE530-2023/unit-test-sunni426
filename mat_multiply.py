@@ -3,7 +3,7 @@
 # Step 2: Write test examples that will confirm your implementation based on the function defined in Step 1
 # This includes wrong inputs, error conditions and correct output
 # Step 3: Write matrix multiplication function
-
+ 
 import numpy as np
 
 def mat_multiply(mat1, mat2):
