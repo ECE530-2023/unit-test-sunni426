@@ -40,6 +40,10 @@ logger.addHandler(ch)
 # logger.error('error message')
 # logger.critical('critical message')
 
+# Logging to a file
+logging.basicConfig(filename='mat_multiply.log',level=logging.DEBUG)
+
+
 '''
 the above logging would produce the following output on the console:
 2023-02-01 16:00:14,471 - simple_example - DEBUG - debug message
@@ -96,7 +100,8 @@ def mat_multiply(mat1, mat2):
         return []
 
     if (len(mat1)==0 or len(mat2)==0): # if empty matrix
-        logger.error('Incorrect matrix input')
+        logger.error('Incorrect matrix input') # to console
+        logging.error('Incorrect matrix input') # to log file
         raise ValueError("Incorrect matrix input")
 
     # matrix 1: type processing & getting dimensions
@@ -120,6 +125,7 @@ def mat_multiply(mat1, mat2):
     mult_answer = np.zeros((mat1_row, mat2_col))
     if mat1_col!=mat2_row:
         logger.error('Dimension mismatch')
+        logging.error('Dimension mismatch') # to log file
         raise ValueError("Dimension mismatch")
 
     for i in range(mat1_row):
@@ -129,13 +135,14 @@ def mat_multiply(mat1, mat2):
                     mult_answer[i][j] += mat1[i][k]*mat2[k][j]
                 else:
                     logger.error('Non-numerical input')
+                    logging.error('Non-numerical input') # to log file
                     raise ValueError("Non-numerical input")
 
      
     return mult_answer
 
 
-mat1 = [[1,2,3],[1,2,3],[1,2,3]] # 3 x 3
+mat1 = [[1,2,],[1,2,3],[1,2,3]] # 3 x 3
 mat2 = [[1,2,3],[1,2,3],[1,2,3]] # 3 x 3
 
 # store 5 frames
