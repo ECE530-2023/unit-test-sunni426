@@ -74,7 +74,7 @@ def mat_multiply(mat1, mat2):
                 else:
                     raise ValueError("Non-numerical input")
 
-    
+     
     return mult_answer
 
 
