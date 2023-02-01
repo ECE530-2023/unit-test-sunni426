@@ -7,8 +7,59 @@
 import numpy as np
 import tracemalloc
 import cProfile, pstats
-import re
+# import re
 # cProfile.run('re.compile("foo|bar")')
+import logging
+import logging.config
+
+# not working
+# logging.config.fileConfig('logging.conf') # this function takes a default parameter
+
+# configuring logger
+# create logger
+logger = logging.getLogger('simpleExample')
+logger.setLevel(logging.DEBUG) # can set different mode (LEVELS)
+
+# create console handler and set level to debug
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+
+# create formatter
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+# add formatter to ch
+ch.setFormatter(formatter)
+
+# add ch to logger
+logger.addHandler(ch)
+
+# 'application' code
+# logger.debug('debug message')
+# logger.info('info message')
+# logger.warning('warn message')
+# logger.error('error message')
+# logger.critical('critical message')
+
+'''
+the above logging would produce the following output on the console:
+2023-02-01 16:00:14,471 - simple_example - DEBUG - debug message
+2023-02-01 16:00:14,471 - simple_example - INFO - info message
+2023-02-01 16:00:14,471 - simple_example - WARNING - warn message
+2023-02-01 16:00:14,471 - simple_example - ERROR - error message
+2023-02-01 16:00:14,471 - simple_example - CRITICAL - critical message
+'''
+
+
+'''
+Great for profiling:
+https://www.machinelearningplus.com/python/cprofile-how-to-profile-your-python-code/
+https://docs.python.org/3/library/profile.html (CPU)
+https://docs.python.org/3/library/tracemalloc.html (memory)
+
+For logging:
+https://docs.python.org/3/howto/logging.html#logging-advanced-tutorial
+
+'''
 
 
 # # for debugging: add main function
@@ -45,6 +96,7 @@ def mat_multiply(mat1, mat2):
         return []
 
     if (len(mat1)==0 or len(mat2)==0): # if empty matrix
+        logger.error('Incorrect matrix input')
         raise ValueError("Incorrect matrix input")
 
     # matrix 1: type processing & getting dimensions
@@ -67,6 +119,7 @@ def mat_multiply(mat1, mat2):
 
     mult_answer = np.zeros((mat1_row, mat2_col))
     if mat1_col!=mat2_row:
+        logger.error('Dimension mismatch')
         raise ValueError("Dimension mismatch")
 
     for i in range(mat1_row):
@@ -75,6 +128,7 @@ def mat_multiply(mat1, mat2):
                 if ((type(mat1[i][k])==int or type(mat1[i][k])==float) and (type(mat1[i][k])==int or type(mat1[i][k])==float)):
                     mult_answer[i][j] += mat1[i][k]*mat2[k][j]
                 else:
+                    logger.error('Non-numerical input')
                     raise ValueError("Non-numerical input")
 
      
