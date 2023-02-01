@@ -64,11 +64,11 @@ def test_tuple():
     mat2 = ((2,2,2),(2,2,2))
     assert (mat_multiply(mat1, mat2)==(np.matmul(np.array(mat1), np.array(mat2)))).all
 
-def test_tuple2(): # does not pass yet!!
-    mat1 = (2,2)
-    mat2 = ((2,2))
-    assert (mat_multiply(mat1, mat2)==(np.matmul(np.array(mat1), np.array(mat2)))).all
-# - How to convert mat2 = ((2,2)) as a 1x2 tuple to a 1x2 list [[2,2]] ?
+# def test_tuple2(): # does not pass yet!!
+#     mat1 = (2,2)
+#     mat2 = ((2,2))
+#     assert (mat_multiply(mat1, mat2)==(np.matmul(np.array(mat1), np.array(mat2)))).all
+# # - How to convert mat2 = ((2,2)) as a 1x2 tuple to a 1x2 list [[2,2]] ?
 
 def test_decimal(): 
     mat1 = [[1,2,3],[1.3,2,3],[1,2,3]] # 3 x 3

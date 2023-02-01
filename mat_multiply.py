@@ -5,6 +5,26 @@
 # Step 3: Write matrix multiplication function
  
 import numpy as np
+import tracemalloc
+
+
+# # for debugging: add main function
+# def main():
+#     # store 5 frames
+#     tracemalloc.start(5)
+
+#     mat1 = [[1,2,3],[1,2,3],[1,2,3]] # 3 x 3
+#     mat2 = [[1,2,3],[1,2,3],[1,2,3]] # 3 x 3
+#     mat_multiply(mat1, mat2)
+
+#     snapshot = tracemalloc.take_snapshot()
+#     top_stats = snapshot.statistics('traceback')
+
+#     # pick the biggest memory block
+#     stat = top_stats[0]
+#     print("%s memory blocks: %.1f KiB"%(stat.count,stat.size/1024))
+#     for line in stat.traceback.format():
+#         print(line)
 
 def mat_multiply(mat1, mat2):
     '''
@@ -13,6 +33,9 @@ def mat_multiply(mat1, mat2):
     list(map(int, ...)) transforms/maps the list of strings into a list of ints. [1, 2, 3]
     '''
     
+    
+
+
     # accepts list, sequence, or tuple form of matrix
 
     if (len(mat1)==0 and len(mat2)==0): # if empty matrix
@@ -51,7 +74,28 @@ def mat_multiply(mat1, mat2):
                 else:
                     raise ValueError("Non-numerical input")
 
-    # mult_answer = np.matmul(np.array(mat1),np.array(mat2)) # <class 'numpy.ndarray'>)
-    # print(f'{mult_answer}\n')
-    # print((np.matmul(np.array(mat1), np.array(mat2))))
+    
     return mult_answer
+
+
+mat1 = [[1,2,3],[1,2,3],[1,2,3]] # 3 x 3
+mat2 = [[1,2,3],[1,2,3],[1,2,3]] # 3 x 3
+
+# store 5 frames
+tracemalloc.start(5)
+# run
+mat_multiply(mat1, mat2)
+
+# trace
+snapshot = tracemalloc.take_snapshot()
+top_stats = snapshot.statistics('traceback')
+
+# pick the biggest memory block
+stat = top_stats[0]
+print("%s memory blocks: %.1f KiB"%(stat.count,stat.size/1024))
+for line in stat.traceback.format():
+    print(line)
+
+
+# if __name__ == '__main__':
+#     main()
