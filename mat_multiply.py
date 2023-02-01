@@ -101,6 +101,7 @@ top_stats = snapshot.statistics('lineno')
 print("[ Top 10 ]")
 for stat in top_stats[:10]:
     print(stat)
+print(f'Memory usage (bytes):{tracemalloc.get_tracemalloc_memory()}')
 
 # if __name__ == '__main__':
 #     main()
