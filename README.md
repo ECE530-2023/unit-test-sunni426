@@ -1,4 +1,4 @@
-# Sunni Lin: EC530 Matrix Multiplication Exercise
+# Sunni Chinjo Lin EC530 Matrix Multiplication Exercise
 
 # Contents: 
 1. mat_multiply.py: matrix multiplication implementation, memory & CPU profiling, logging 
