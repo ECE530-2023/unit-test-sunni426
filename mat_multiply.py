@@ -40,8 +40,8 @@ logger.addHandler(ch)
 # logger.error('error message')
 # logger.critical('critical message')
 
-# Logging to a file
-logging.basicConfig(filename='mat_multiply.log',level=logging.DEBUG)
+# # Logging to a file
+# logging.basicConfig(filename='mat_multiply.log',level=logging.DEBUG)
 
 
 '''
@@ -91,9 +91,6 @@ def mat_multiply(mat1, mat2):
     list(map(int, ...)) transforms/maps the list of strings into a list of ints. [1, 2, 3]
     '''
     
-    
-
-
     # accepts list, sequence, or tuple form of matrix
 
     if (len(mat1)==0 and len(mat2)==0): # if empty matrix
@@ -142,16 +139,16 @@ def mat_multiply(mat1, mat2):
     return mult_answer
 
 
-mat1 = [[1,2,],[1,2,3],[1,2,3]] # 3 x 3
-mat2 = [[1,2,3],[1,2,3],[1,2,3]] # 3 x 3
+# mat1 = [[1,2,],[1,2,3],[1,2,3]] # 3 x 3
+# mat2 = [[1,2,3],[1,2,3],[1,2,3]] # 3 x 3
 
-# store 5 frames
-tracemalloc.start(5) # start memory profiling
-# run
-mat_multiply(mat1, mat2)
+# # store 5 frames
+# tracemalloc.start(5) # start memory profiling
+# # run
+# mat_multiply(mat1, mat2)
 
 # trace
-snapshot = tracemalloc.take_snapshot()
+# snapshot = tracemalloc.take_snapshot()
 
 '''
 Memory profiling
@@ -166,19 +163,19 @@ Memory profiling
 '''
 
 # display the 10 files allocating the most memory
-top_stats = snapshot.statistics('lineno')
-print("[ Top 10 ]")
-for stat in top_stats[:10]:
-    print(stat)
-print(f'Memory usage (bytes):{tracemalloc.get_tracemalloc_memory()}')
+# top_stats = snapshot.statistics('lineno')
+# print("[ Top 10 ]")
+# for stat in top_stats[:10]:
+#     print(stat)
+# print(f'Memory usage (bytes):{tracemalloc.get_tracemalloc_memory()}')
 
 
-profiler = cProfile.Profile()
-profiler.enable()
-mat_multiply(mat1,mat2)
-profiler.disable()
-stats = pstats.Stats(profiler).sort_stats('ncalls')
-stats.print_stats()
+# profiler = cProfile.Profile()
+# profiler.enable()
+# mat_multiply(mat1,mat2)
+# profiler.disable()
+# stats = pstats.Stats(profiler).sort_stats('ncalls')
+# stats.print_stats()
 '''
 output here:
 

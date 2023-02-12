@@ -1,6 +1,9 @@
 from mat_multiply import mat_multiply
 import numpy as np
 import pytest
+import tracemalloc
+import logging
+import logging.config
 
 '''
 Note: pytest will run all files of the form test_*.py or *_test.py in 
@@ -25,12 +28,36 @@ test cases (unit test):
     - 
 '''
 
+
+# configuring logger
+# create logger
+logger = logging.getLogger('test_logger')
+logger.setLevel(logging.DEBUG) # can set different mode (LEVELS)
+
+# create console handler and set level to debug
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+
+# create formatter
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+# add formatter to ch
+ch.setFormatter(formatter)
+
+# add ch to logger
+logger.addHandler(ch)
+
+# Logging to a file
+logging.basicConfig(filename='mat_multiply.log',level=logging.DEBUG)
+
+
 def test_dimensions():
     mat1 = [2, 2] # 1 x 2
     mat2 = [2, 2] # 1 x 2
     # using pytest to check error handling
     with pytest.raises(ValueError, match="Dimension mismatch"):
         mat_multiply(mat1, mat2)
+        logging.error('Dimension mismatch') # to log file
 
 def test_empty():
     mat1 = []
@@ -42,6 +69,7 @@ def test_partially_empty():
     mat2 = []
     with pytest.raises(ValueError, match="Incorrect matrix input"):
         mat_multiply(mat1, mat2)
+        logging.error('Incorrect matrix input') # to log value
 
 def test_value():
     mat1 = [[1,2,3],[1,2,3],[1,2,3]] # 3 x 3
