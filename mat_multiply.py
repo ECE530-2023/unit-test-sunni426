@@ -3,7 +3,10 @@
 # Step 2: Write test examples that will confirm your implementation based on the function defined in Step 1
 # This includes wrong inputs, error conditions and correct output
 # Step 3: Write matrix multiplication function
- 
+
+# To perform linting, open the Command Palette (⇧⌘P), filter on "linting", and select 
+# Python: Run Linting. Linting will run automatically when you save a file.
+
 import numpy as np
 import tracemalloc
 import cProfile, pstats
@@ -11,9 +14,6 @@ import cProfile, pstats
 # cProfile.run('re.compile("foo|bar")')
 import logging
 import logging.config
-
-# not working
-# logging.config.fileConfig('logging.conf') # this function takes a default parameter
 
 # configuring logger
 # create logger
