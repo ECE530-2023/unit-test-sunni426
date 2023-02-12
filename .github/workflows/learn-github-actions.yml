@@ -2,12 +2,13 @@ name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  check-bats-version:
+  check-bats-version: # defines a job named check-bats-version, child keys define properties of this job
     runs-on: ubuntu-latest
-    steps:
+    steps: # groups together all steps that run in this job. each item nested under here is a separate action or shell script
       - uses: actions/checkout@v3
       - uses: actions/setup-node#v3
         with:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
+# now, new GitAction worflow flow is installed in repo, runs automatically each time new change pushed
